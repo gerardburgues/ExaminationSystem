@@ -1,5 +1,7 @@
 package com.SSD.SSD;
 
+import com.SSD.SSD.model.User;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,11 +18,13 @@ public class SsdApplication {
 	CommandLineRunner commandLineRunner(UserRepository userRepository){
 		return args -> {
 			User Joan = new User(
+
+					123L,
 					"Joan",
 					"Jones",
 					"maria.jones@gmail.com",
 					"HelloPassword",
-					123456.0
+					123456L
 			);
 			userRepository.save(Joan);
 		};
