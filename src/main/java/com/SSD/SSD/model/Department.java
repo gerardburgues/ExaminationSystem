@@ -1,28 +1,29 @@
 package com.SSD.SSD.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Objects;
+import java.util.Collection;
 
 @Entity
-public class Department implements Serializable {
-
-    private Long departmentId;
+@Table
+public class Department {
+    private Integer departmentId;
     private String name;
-
+    private Collection<Professor> professorsByDepartmentId;
+    private Collection<StudentDepartment> studentDepartmentsByDepartmentId;
 
     @Id
-    @Column(name = "DEPARTMENT_ID", nullable = false)
-    public Long getDepartmentId() {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "DEPARTMENT_ID")
+    public Integer getDepartmentId() {
         return departmentId;
     }
 
-    public void setDepartmentId(Long departmentId) {
+    public void setDepartmentId(Integer departmentId) {
         this.departmentId = departmentId;
     }
 
     @Basic
-    @Column(name = "NAME", nullable = false, length = 100)
+    @Column(name = "NAME")
     public String getName() {
         return name;
     }
@@ -35,12 +36,37 @@ public class Department implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Department that = (Department) o;
-        return Objects.equals(departmentId, that.departmentId) && Objects.equals(name, that.name);
+
+        if (departmentId != null ? !departmentId.equals(that.departmentId) : that.departmentId != null) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(departmentId, name);
+        int result = departmentId != null ? departmentId.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
+    }
+
+    @OneToMany(mappedBy = "departmentByDepartmentId")
+    public Collection<Professor> getProfessorsByDepartmentId() {
+        return professorsByDepartmentId;
+    }
+
+    public void setProfessorsByDepartmentId(Collection<Professor> professorsByDepartmentId) {
+        this.professorsByDepartmentId = professorsByDepartmentId;
+    }
+
+    @OneToMany(mappedBy = "departmentByDepartmentId")
+    public Collection<StudentDepartment> getStudentDepartmentsByDepartmentId() {
+        return studentDepartmentsByDepartmentId;
+    }
+
+    public void setStudentDepartmentsByDepartmentId(Collection<StudentDepartment> studentDepartmentsByDepartmentId) {
+        this.studentDepartmentsByDepartmentId = studentDepartmentsByDepartmentId;
     }
 }

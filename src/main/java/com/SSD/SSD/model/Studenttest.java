@@ -1,30 +1,29 @@
 package com.SSD.SSD.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
-public class Studenttest implements Serializable {
-
-    private Long studenttestId;
+public class StudentTest {
+    private Integer studentTestId;
     private Double mark;
-    private Long testId;
-    private Long studentId;
-
+//    private Integer testId;
+//    private Integer studentId;
+    private Tests testByTestId;
+    private Student studentByStudentId;
 
     @Id
-    @Column(name = "STUDENTTEST_ID", nullable = false)
-    public Long getStudenttestId() {
-        return studenttestId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "STUDENTTEST_ID")
+    public Integer getStudentTestId() {
+        return studentTestId;
     }
 
-    public void setStudenttestId(Long studenttestId) {
-        this.studenttestId = studenttestId;
+    public void setStudentTestId(Integer studentTestId) {
+        this.studentTestId = studentTestId;
     }
 
     @Basic
-    @Column(name = "MARK", nullable = true, precision = 0)
+    @Column(name = "MARK")
     public Double getMark() {
         return mark;
     }
@@ -33,36 +32,68 @@ public class Studenttest implements Serializable {
         this.mark = mark;
     }
 
-    @Basic
-    @Column(name = "TEST_ID", nullable = false)
-    public Long getTestId() {
-        return testId;
-    }
-
-    public void setTestId(Long testId) {
-        this.testId = testId;
-    }
-
-    @Basic
-    @Column(name = "STUDENT_ID", nullable = false)
-    public Long getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
-    }
+//    @Basic
+//    @Column(name = "TEST_ID")
+//    public Integer getTestId() {
+//        return testId;
+//    }
+//
+//    public void setTestId(Integer testId) {
+//        this.testId = testId;
+//    }
+//
+//    @Basic
+//    @Column(name = "STUDENT_ID")
+//    public Integer getStudentId() {
+//        return studentId;
+//    }
+//
+//    public void setStudentId(Integer studentId) {
+//        this.studentId = studentId;
+//    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Studenttest that = (Studenttest) o;
-        return Objects.equals(studenttestId, that.studenttestId) && Objects.equals(mark, that.mark) && Objects.equals(testId, that.testId) && Objects.equals(studentId, that.studentId);
+
+        StudentTest that = (StudentTest) o;
+
+        if (studentTestId != null ? !studentTestId.equals(that.studentTestId) : that.studentTestId != null)
+            return false;
+        if (mark != null ? !mark.equals(that.mark) : that.mark != null) return false;
+//        if (testId != null ? !testId.equals(that.testId) : that.testId != null) return false;
+//        if (studentId != null ? !studentId.equals(that.studentId) : that.studentId != null) return false;
+
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(studenttestId, mark, testId, studentId);
+        int result = studentTestId != null ? studentTestId.hashCode() : 0;
+        result = 31 * result + (mark != null ? mark.hashCode() : 0);
+//        result = 31 * result + (testId != null ? testId.hashCode() : 0);
+//        result = 31 * result + (studentId != null ? studentId.hashCode() : 0);
+        return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "TEST_ID", referencedColumnName = "TEST_ID", nullable = false)
+    public Tests getTestByTestId() {
+        return testByTestId;
+    }
+
+    public void setTestByTestId(Tests testByTestId) {
+        this.testByTestId = testByTestId;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "STUDENT_ID", referencedColumnName = "STUDENT_ID", nullable = false)
+    public Student getStudentByStudentId() {
+        return studentByStudentId;
+    }
+
+    public void setStudentByStudentId(Student studentByStudentId) {
+        this.studentByStudentId = studentByStudentId;
     }
 }

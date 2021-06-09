@@ -1,29 +1,28 @@
 package com.SSD.SSD.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Objects;
+import java.util.Collection;
 
 @Entity
-@Table(name = "QUESTIONTYPE_ENUM", schema = "PUBLIC", catalog = "USERS")
-public class QuestiontypeEnum implements Serializable {
-
-    private Long questiontypeId;
+@Table(name = "QUESTIONTYPE_ENUM")
+public class QuestionTypeENUM {
+    private Integer questionTypeId;
     private String name;
-
+    private Collection<Question> questionsByQuestiontypeId;
 
     @Id
-    @Column(name = "QUESTIONTYPE_ID", nullable = false)
-    public Long getQuestiontypeId() {
-        return questiontypeId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "QUESTIONTYPE_ID")
+    public Integer getQuestionTypeId() {
+        return questionTypeId;
     }
 
-    public void setQuestiontypeId(Long questiontypeId) {
-        this.questiontypeId = questiontypeId;
+    public void setQuestionTypeId(Integer questionTypeId) {
+        this.questionTypeId = questionTypeId;
     }
 
     @Basic
-    @Column(name = "NAME", nullable = false, length = 50)
+    @Column(name = "NAME")
     public String getName() {
         return name;
     }
@@ -36,12 +35,29 @@ public class QuestiontypeEnum implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        QuestiontypeEnum that = (QuestiontypeEnum) o;
-        return Objects.equals(questiontypeId, that.questiontypeId) && Objects.equals(name, that.name);
+
+        QuestionTypeENUM that = (QuestionTypeENUM) o;
+
+        if (questionTypeId != null ? !questionTypeId.equals(that.questionTypeId) : that.questionTypeId != null)
+            return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(questiontypeId, name);
+        int result = questionTypeId != null ? questionTypeId.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
+    }
+
+    @OneToMany(mappedBy = "questionTypeEnumByQuestionTypeId")
+    public Collection<Question> getQuestionsByQuestiontypeId() {
+        return questionsByQuestiontypeId;
+    }
+
+    public void setQuestionsByQuestiontypeId(Collection<Question> questionsByQuestiontypeId) {
+        this.questionsByQuestiontypeId = questionsByQuestiontypeId;
     }
 }
