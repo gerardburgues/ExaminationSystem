@@ -1,10 +1,12 @@
 package com.SSD.SSD;
 
+import com.SSD.SSD.repos.StudentRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.context.annotation.Bean;
-
+/**
 @SpringBootApplication
 public class SsdApplication {
 
@@ -12,19 +14,19 @@ public class SsdApplication {
 		SpringApplication.run(SsdApplication.class, args);
 	}
 
-//	@Bean
-//	CommandLineRunner commandLineRunner(UserRepository userRepository){
-//		return args -> {
-//			User Joan = new User(
-//
-//					123L,
-//					"Joan",
-//					"Jones",
-//					"maria.jones@gmail.com",
-//					"HelloPassword",
-//					123456L
-//			);
-//			userRepository.save(Joan);
-//		};
-//	}
+
+}
+**/
+import org.springframework.boot.SpringApplication;
+		import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+@EnableJpaRepositories(basePackageClasses = StudentRepository.class)
+@SpringBootApplication
+public class SsdApplication {
+
+	public static void main(String[] args) throws Throwable {
+		SpringApplication.run(SsdApplication.class, args);
+	}
+
 }
