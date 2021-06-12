@@ -19,6 +19,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
-
+    Student findAllByStudentId(Integer studentId);
     Optional<Student> findStudentsByUserByUserId_Email(String email);
+
 }
