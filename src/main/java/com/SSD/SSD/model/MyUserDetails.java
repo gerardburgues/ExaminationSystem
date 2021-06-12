@@ -1,33 +1,39 @@
 package com.SSD.SSD.model;
 
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
 public class MyUserDetails implements UserDetails {
 
-    private String email;
-    private String name;
-    private String password;
-    private Long pesel;
-    private String surname;
+    private Integer Index_no;
+    private String Email;
+    private String Name;
+    private String Password;
 
-    public MyUserDetails(Users user){
+    private Long Pesel;
+    private String Surname;
 
-        this.email=user.getEmail();
-        this.name=user.getName();
-        this.password=user.getPassword();
-        this.pesel= user.getPesel();
-        this.surname=user.getSurname();
+    public MyUserDetails(Student student){
+
+        this.Index_no = student.getIndexNo();
+        this.Email = student.getUserByUserId().getEmail();
+        this.Name = student.getUserByUserId().getName();
+        this.Pesel = student.getUserByUserId().getPesel();
+        this.Surname = student.getUserByUserId().getSurname();
+        this.Password = student.getUserByUserId().getPassword();
 
     }
     public MyUserDetails(){
 
 
     }
+
 
 
     @Override
@@ -37,7 +43,7 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return password;
+        return Password;
     }
 
     @Override

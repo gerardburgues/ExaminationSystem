@@ -9,7 +9,7 @@ public class Question {
 //    private Integer questionTypeId;
 //    private Integer testId;
     private Collection<Answer> answersByQuestionId;
-    private QuestionTypeENUM questionTypeEnumByQuestionTypeId;
+    private QuestionType questionTypeByQuestionTypeId;
     private Tests testByTestId;
 
     @Id
@@ -77,12 +77,12 @@ public class Question {
 
     @ManyToOne
     @JoinColumn(name = "QUESTIONTYPE_ID", referencedColumnName = "QUESTIONTYPE_ID", nullable = false)
-    public QuestionTypeENUM getQuestionTypeEnumByQuestionTypeId() {
-        return questionTypeEnumByQuestionTypeId;
+    public QuestionType getQuestionTypeByQuestionTypeId() {
+        return questionTypeByQuestionTypeId;
     }
 
-    public void setQuestionTypeEnumByQuestionTypeId(QuestionTypeENUM questionTypeEnumByQuestionTypeId) {
-        this.questionTypeEnumByQuestionTypeId = questionTypeEnumByQuestionTypeId;
+    public void setQuestionTypeByQuestionTypeId(QuestionType questionTypeByQuestionTypeId) {
+        this.questionTypeByQuestionTypeId = questionTypeByQuestionTypeId;
     }
 
     @ManyToOne
