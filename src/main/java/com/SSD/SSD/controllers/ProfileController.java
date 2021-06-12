@@ -1,6 +1,7 @@
 package com.SSD.SSD.controllers;
 
 import com.SSD.SSD.model.Student;
+import com.SSD.SSD.model.Users;
 import com.SSD.SSD.services.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -15,8 +16,8 @@ public class ProfileController {
     private ProfileService profileService;
 
     @PostMapping("/saveProfile")
-    public String saveStudent(@ModelAttribute("student") Student student){
-        profileService.saveStudent(student);
+    public String saveUser(@ModelAttribute("student") Users user){
+        profileService.saveUser(user);
         return "redirect:/";
     }
 
@@ -24,8 +25,8 @@ public class ProfileController {
     @RequestMapping("/profile/{id}")
     public String ProfileModel_index(@PathVariable("id") Integer id, Model model){
 
-        Student student = profileService.getStudentById(id);
-        model.addAttribute("hey", student);
+        Users user = profileService.getUserById(id);
+        model.addAttribute("hey", user);
         return "profile";
 
     }
@@ -35,9 +36,11 @@ public class ProfileController {
 
         ModelAndView mav = new ModelAndView("profile");
 
-        Student ss = profileService.getStudentById(id);
+        Users ss = profileService.getUserById(id);
         mav.addObject("studentprofile", ss);
         return mav;
     }
+
+
 
 }

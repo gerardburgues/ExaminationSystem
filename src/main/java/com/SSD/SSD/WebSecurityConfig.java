@@ -35,6 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/", "/homeScreen").permitAll()
+                .antMatchers("/course").access("hasRole('PROFESSOR')")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class StudentTest {
     private Integer studentTestId;
     private Double mark;
-//    private Integer testId;
+    //    private Integer testId;
 //    private Integer studentId;
     private Tests testByTestId;
     private Student studentByStudentId;

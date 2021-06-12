@@ -2,6 +2,7 @@ package com.SSD.SSD.services;
 
 import com.SSD.SSD.model.Student;
 
+import com.SSD.SSD.model.Users;
 import com.SSD.SSD.repos.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,20 +18,20 @@ public class ProfileServiceImpl implements ProfileService{
 
 
     @Override
-    public void saveStudent(Student student){
-        this.profileRepository.save(student);
+    public void saveUser(Users user){
+        this.profileRepository.save(user);
     }
 
 
     @Override
-    public Student getStudentById(Integer id){
-        Optional<Student> optional = profileRepository.findById(id);
-        Student student  = null;
-        if(optional.isPresent()){  student = optional.get();}
+    public Users getUserById(Integer id){
+        Optional<Users> optional = profileRepository.findById(id);
+        Users user  = null;
+        if(optional.isPresent()){  user = optional.get();}
         else{
             throw  new RuntimeException("Student not found" + id);
         }
-        return student;
+        return user;
 
     }
 }

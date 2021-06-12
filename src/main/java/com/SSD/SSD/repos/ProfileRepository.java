@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Repository
-public interface ProfileRepository extends JpaRepository<Student, Integer> {
+public interface ProfileRepository extends JpaRepository<Users, Integer> {
 
 
 

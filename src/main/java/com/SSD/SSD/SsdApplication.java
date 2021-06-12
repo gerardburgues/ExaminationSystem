@@ -1,6 +1,7 @@
 package com.SSD.SSD;
 
-import com.SSD.SSD.repos.StudentRepository;
+
+import com.SSD.SSD.repos.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,7 +22,7 @@ import org.springframework.boot.SpringApplication;
 		import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@EnableJpaRepositories(basePackageClasses = StudentRepository.class)
+@EnableJpaRepositories(basePackageClasses = UserRepository.class)
 @SpringBootApplication
 public class SsdApplication {
 

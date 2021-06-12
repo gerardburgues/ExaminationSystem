@@ -2,6 +2,7 @@ package com.SSD.SSD.model;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Optional;
 
 @Entity
 public class Users {
@@ -10,9 +11,9 @@ public class Users {
     private String surname;
     private String email;
     private String password;
-    private Integer pesel;
-    private Collection<Professor> professorsByUserId;
-    private Collection<Student> studentsByUserId;
+    private Long pesel;
+    private Professor professorsByUserId;
+    private Student studentsByUserId;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,11 +68,11 @@ public class Users {
 
     @Basic
     @Column(name = "PESEL")
-    public Integer getPesel() {
+    public Long getPesel() {
         return pesel;
     }
 
-    public void setPesel(Integer pesel) {
+    public void setPesel(Long pesel) {
         this.pesel = pesel;
     }
 
@@ -102,22 +103,22 @@ public class Users {
         result = 31 * result + (pesel != null ? pesel.hashCode() : 0);
         return result;
     }
-//
-//    @OneToOne(mappedBy = "userByUserId")
-//    public Collection<Professor> getProfessorsByUserId() {
-//        return professorsByUserId;
-//    }
-//
-//    public void setProfessorsByUserId(Collection<Professor> professorsByUserId) {
-//        this.professorsByUserId = professorsByUserId;
-//    }
-//
-//    @OneToOne(mappedBy = "userByUserId")
-//    public Collection<Student> getStudentsByUserId() {
-//        return studentsByUserId;
-//    }
-//
-//    public void setStudentsByUserId(Collection<Student> studentsByUserId) {
-//        this.studentsByUserId = studentsByUserId;
-//    }
+
+    @OneToOne(mappedBy = "userByUserId")
+    public Professor getProfessorsByUserId() {
+        return professorsByUserId;
+    }
+
+    public void setProfessorsByUserId(Professor professorsByUserId) {
+        this.professorsByUserId = professorsByUserId;
+    }
+
+    @OneToOne(mappedBy = "userByUserId")
+    public Student getStudentsByUserId() {
+        return studentsByUserId;
+    }
+
+    public void setStudentsByUserId(Student studentsByUserId) {
+        this.studentsByUserId = studentsByUserId;
+    }
 }
