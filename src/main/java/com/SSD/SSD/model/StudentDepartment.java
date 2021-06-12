@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 public class StudentDepartment {
     private Integer studentDepartmentId;
-//    private Integer departmentId;
+    //    private Integer departmentId;
 //    private Integer studentId;
     private Department departmentByDepartmentId;
     private Student studentByStudentId;
