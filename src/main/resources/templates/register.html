@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>E-Portal</title>
 
@@ -30,11 +30,11 @@
    <h4 class="card-title mt-2">Sign up to the E-Portal</h4>
 </header>
 <article class="card-body">
-<form>
+<form method="post" th:action="@{/register}" th:object="${student}, ${user}" >
    <div class="form-row">
       <div class="col form-group">
          <label>First name </label>   
-         <input type="text" class="form-control" placeholder="">
+         <input type="text" class="form-control" placeholder="" name="name" th:field="*{userByUserId.name}">
       </div> <!-- form-group end.// -->
       <div class="col form-group">
          <label>Last name</label>
@@ -43,38 +43,20 @@
    </div> <!-- form-row end.// -->
    <div class="form-group">
       <label>Email address</label>
-      <input type="email" class="form-control" placeholder="">
+      <input type="email" class="form-control" placeholder="" th:field="*{userByUserId.email}">
       <small class="form-text text-muted">Introduce your Student Email.</small>
    </div> <!-- form-group end.// -->
-   <div class="form-group">
-         <label class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="gender" value="option1">
-        <span class="form-check-label"> Male </span>
-      </label>
-      <label class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="gender" value="option2">
-        <span class="form-check-label"> Female</span>
-      </label>
-   </div> <!-- form-group end.// -->
+
    <div class="form-row">
       <div class="form-group col-md-6">
         <label>City</label>
         <input type="text" class="form-control">
       </div> <!-- form-group end.// -->
-      <div class="form-group col-md-6">
-        <label>Country</label>
-        <select id="inputState" class="form-control">
-          <option> Choose...</option>
-            <option selected="">Poland</option>
-            <option>Spain</option>
-            <option>United States</option>
-            <option>India</option>
-        </select>
-      </div> <!-- form-group end.// -->
+
    </div> <!-- form-row.// -->
    <div class="form-group">
       <label>Create password</label>
-       <input class="form-control" type="password">
+       <input class="form-control" type="password" th:field="*{userByUserId.password}">
    </div> <!-- form-group end.// -->  
     <div class="form-group">
         <button type="submit" class="btn btn-primary btn-block"> Register  </button>
