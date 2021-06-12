@@ -10,7 +10,7 @@ public class Users {
     private String surname;
     private String email;
     private String password;
-    private Integer pesel;
+    private Long pesel;
     private Collection<Professor> professorsByUserId;
     private Collection<Student> studentsByUserId;
 
@@ -67,11 +67,11 @@ public class Users {
 
     @Basic
     @Column(name = "PESEL")
-    public Integer getPesel() {
+    public Long getPesel() {
         return pesel;
     }
 
-    public void setPesel(Integer pesel) {
+    public void setPesel(Long pesel) {
         this.pesel = pesel;
     }
 

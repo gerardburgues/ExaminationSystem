@@ -22,7 +22,7 @@ public class DepartmentService {
         return departmentRepository.findAll();
     }
 
-    public void save(Department department){
+    public void saveDepartment(Department department){
 
         departmentRepository.save(department);
     }

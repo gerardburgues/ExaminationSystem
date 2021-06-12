@@ -16,7 +16,7 @@ public class MyUserDetails implements UserDetails {
     private String Name;
     private String Password;
 
-    private Integer Pesel;
+    private Long Pesel;
     private String Surname;
 
     public MyUserDetails(Student student){

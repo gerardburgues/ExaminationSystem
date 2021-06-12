@@ -1,7 +1,6 @@
 package com.SSD.SSD.controllers;
 
 import com.SSD.SSD.model.Department;
-import com.SSD.SSD.repos.DepartmentRepository;
 import com.SSD.SSD.services.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,26 +28,11 @@ public class DepartmentController {
     }
 
     @GetMapping("/save")
-    public void run() {
+    public void saveDepartment() {
 
         Department department = new Department();
         department.setName("WWW");
-        System.out.println(department);
 
-        departmentService.save(department);
-
-        System.out.println("OK");
-    }
-    @GetMapping("/save2")
-    public void ru2n() {
-
-        Department department = new Department();
-        department.setName("Wydział Informatyki");
-
-        System.out.println(department);
-
-        departmentService.save(department);
-
-        System.out.println("OK");
+        departmentService.saveDepartment(department);
     }
 }

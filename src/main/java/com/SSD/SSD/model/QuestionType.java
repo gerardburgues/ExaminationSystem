@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "QUESTIONTYPE_ENUM")
-public class QuestionTypeENUM {
+@Table(name = "QUESTIONTYPE")
+public class QuestionType {
     private Integer questionTypeId;
     private String name;
     private Collection<Question> questionsByQuestiontypeId;
@@ -36,7 +36,7 @@ public class QuestionTypeENUM {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        QuestionTypeENUM that = (QuestionTypeENUM) o;
+        QuestionType that = (QuestionType) o;
 
         if (questionTypeId != null ? !questionTypeId.equals(that.questionTypeId) : that.questionTypeId != null)
             return false;
@@ -52,7 +52,7 @@ public class QuestionTypeENUM {
         return result;
     }
 
-    @OneToMany(mappedBy = "questionTypeEnumByQuestionTypeId")
+    @OneToMany(mappedBy = "questionTypeByQuestionTypeId")
     public Collection<Question> getQuestionsByQuestiontypeId() {
         return questionsByQuestiontypeId;
     }
