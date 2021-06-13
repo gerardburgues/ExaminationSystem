@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.*;
 
 public class MyUserDetails implements UserDetails {
-    private Integer id;
+
     private String email;
     private String name;
     private String password;
@@ -16,7 +16,7 @@ public class MyUserDetails implements UserDetails {
     private String surname;
 
     public MyUserDetails(Users user){
-        this.id=user.getUserId();
+
         this.email=user.getEmail();
         this.name=user.getName();
         this.password=user.getPassword();
