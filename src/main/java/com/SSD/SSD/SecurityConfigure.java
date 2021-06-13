@@ -9,10 +9,12 @@ public class SecurityConfigure implements WebMvcConfigurer {
 
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("homeScreen");
-        registry.addViewController("/home").setViewName("homeScreen");
-        registry.addViewController("/loginoficial").setViewName("loginoficial");
+        //registry.addViewController("/home").setViewName("homeScreen");
+        registry.addViewController("/student/loginoficial").setViewName("student/loginoficial");
+        registry.addViewController("/professor/LoginProfessor").setViewName("professor/LoginProfessor");
+        registry.addViewController("/hello").setViewName("hello");
         registry.addViewController("/index").setViewName("index");
-        registry.addViewController("/profile/{}").setViewName("profile");
+        registry.addViewController("professor/profile/{}").setViewName("profile");
 
 
     }

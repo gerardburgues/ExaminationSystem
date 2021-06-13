@@ -15,4 +15,5 @@ public interface ProfileService {
 
     void saveUser(Users user);
     Users getUserById(Integer id);
+    Users getUserByEmail(String email);
 }

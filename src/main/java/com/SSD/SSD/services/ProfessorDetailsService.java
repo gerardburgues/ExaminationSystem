@@ -15,7 +15,8 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class MyUserDetailsServices implements UserDetailsService {
+public class ProfessorDetailsService implements UserDetailsService {
+
 
     @Autowired
     UsersRepository userRepository;
@@ -30,13 +31,13 @@ public class MyUserDetailsServices implements UserDetailsService {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         Optional<Users> user  = userRepository.findUsersByEmail(s);
 
-        //We are creating student
-        if(profileService.getUserByEmail(s).getEmail().endsWith("1")){
+        //if ends with 2 is student, 1--professor
+        if(profileService.getUserByEmail(s).getEmail().endsWith("2")){
             System.out.println("---------------------------------------------------------");
             System.out.println(profileService.getUserByEmail(s).getEmail() );
             throw new UsernameNotFoundException(s);
 
-        }else{ System.out.println("----------------------WE ARE CREATING-----------------------------------");
+        }else{ System.out.println("----------------------WE ARE CREATING PROFESSOR-----------------------------------");
             System.out.println(profileService.getUserByEmail(s).getEmail() );}
 
         return user.map(MyUserDetails::new).get();

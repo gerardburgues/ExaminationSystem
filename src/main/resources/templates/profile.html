@@ -3,7 +3,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <title>E-Portal</title>
+    <title>E-Portal</title>
 </head>
 
 <!-- Latest compiled and minified CSS -->
@@ -66,31 +66,31 @@
                                     <div class="form-group row">
                                         <label  class="col-4 col-form-label">Student ID</label>
                                         <div class="col-8">
-                                            <span type="text" th:text="*{studentId}"></span>
+                                            <!--  <span type="text" th:text="*{}"></span>-->
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-4 col-form-label">Name</label>
                                         <div class="col-8">
-                                            <span type="text" th:text="*{userByUserId.name}"></span>
+                                            <span type="text" th:text="*{name}"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label  class="col-4 col-form-label">Surname</label>
                                         <div class="col-8">
-                                            <span type="text" th:text="*{userByUserId.surname}"></span>
+                                            <span type="text" th:text="*{surname}"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label  class="col-4 col-form-label">Email</label>
                                         <div class="col-8">
-                                            <span type="text" th:text="*{userByUserId.email}"></span>
+                                            <span type="text" th:text="*{email}"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label  class="col-4 col-form-label">Pesel</label>
                                         <div class="col-8">
-                                            <span type="text" th:text="*{userByUserId.pesel}"></span>
+                                            <span type="text" th:text="*{pesel}"></span>
                                         </div>
                                     </div>
 
@@ -107,7 +107,7 @@
     </div>
 
 
-    </div>
+</div>
 </body>
 </html>
 

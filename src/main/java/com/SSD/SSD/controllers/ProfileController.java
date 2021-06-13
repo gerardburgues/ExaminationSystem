@@ -4,6 +4,7 @@ import com.SSD.SSD.model.Student;
 import com.SSD.SSD.model.Users;
 import com.SSD.SSD.services.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,6 +31,7 @@ public class ProfileController {
         return "profile";
 
     }
+
 
     @GetMapping("/profile/{id}")
     public ModelAndView ProfileModel(@PathVariable (value="id") Integer id, Model model){

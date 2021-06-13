@@ -34,4 +34,16 @@ public class ProfileServiceImpl implements ProfileService{
         return user;
 
     }
+    @Override
+    public  Users getUserByEmail(String email){
+        Optional<Users> optional = profileRepository.findUsersByEmail(email);
+        Users user =null;
+        if(optional.isPresent()){  user = optional.get();}
+        else{
+            throw  new RuntimeException("Student not found" + email);
+        }
+        return user;
+
+
+    }
 }
