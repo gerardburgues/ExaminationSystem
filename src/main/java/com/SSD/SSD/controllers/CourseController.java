@@ -1,52 +1,81 @@
 package com.SSD.SSD.controllers;
 
 import com.SSD.SSD.model.Course;
+import com.SSD.SSD.model.Student;
 import com.SSD.SSD.model.StudentCourse;
 import com.SSD.SSD.services.CourseService;
 import com.SSD.SSD.services.StudentCourseService;
 import com.SSD.SSD.services.StudentService;
+import com.SSD.SSD.services.TestsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 @RestController
 @RequestMapping(path = "course")
 public class CourseController {
 
     private final CourseService courseService;
-    private final StudentCourseService studentCourseService;
     private final StudentService studentService;
+    private final TestsService testsService;
+    private final StudentCourseService studentCourseService;
 
     @Autowired
-    public CourseController(CourseService courseService, StudentCourseService studentCourseService, StudentService studentService) {
+    public CourseController(CourseService courseService, StudentService studentService, TestsService testsService,
+                            StudentCourseService studentCourseService) {
         this.courseService = courseService;
-        this.studentCourseService = studentCourseService;
         this.studentService = studentService;
+        this.testsService = testsService;
+        this.studentCourseService = studentCourseService;
     }
 
-    @GetMapping("/showNewStudentForm")
-    public String showNewStudentForm(Model model){
+    @PostMapping(path = "/{id}")
+    public ModelAndView displayCourse(@PathVariable Integer id){
 
+        ModelAndView mav = new ModelAndView("course");
+        Course course = courseService.findCourseById(id).get();
+
+        Collection<StudentCourse> studentCourses = course.getStudentCoursesByCourseId();
+        ArrayList<Student> studentsEnrolled = new ArrayList<>();
+
+        for(StudentCourse studentCourse : studentCourses){
+
+            studentsEnrolled.add(studentCourse.getStudentByStudentId());
+        }
+
+        mav.addObject("course", course);
+        mav.addObject("studentsEnrolled", studentsEnrolled);
+
+        return mav;
+    }
+
+    @GetMapping(path = "/{courseId}/addStudent/{studentId}")
+    public ModelAndView addStudentToCourse(@PathVariable Integer courseId, @PathVariable Integer studentId){
+
+        ModelAndView mav = new ModelAndView("redirect:/course/"+courseId);
         StudentCourse studentCourse = new StudentCourse();
-        model.addAttribute("studentcourse", studentCourse);
-        return "new_student";
-    }
 
-    @PostMapping("/saveEmployee")
-    public String saveEmployee(@ModelAttribute("employee") StudentCourse studentCourse) {
-        // save employee to database
+        studentCourse.setCourseByCourseId(courseService.findCourseById(courseId).get());
+        studentCourse.setStudentByStudentId(studentService.findStudentById(studentId).get());
+
         studentCourseService.saveStudentCourse(studentCourse);
-        return "redirect:/";
+
+        return mav;
     }
 
+    @GetMapping(path = "/{courseId}/deleteStudent/{studentId}")
+    public ModelAndView deleteStudentFromCourse(@PathVariable Integer courseId, @PathVariable Integer studentId){
 
-    @GetMapping
-    public String displayCourse (Model model){
+        ModelAndView mav = new ModelAndView("redirect:/course/"+courseId);
 
-        Course course = courseService.findCourseById(1).get();
+        StudentCourse studentCourse = studentCourseService.findStudentCourseByStudentAndCourse(
+                studentService.findStudentById(studentId).get(), courseService.findCourseById(courseId).get());
 
-        model.addAttribute("course", course);
+        studentCourseService.deleteStudentCourse(studentCourse);
 
-        return "course";
+        return mav;
     }
 }
