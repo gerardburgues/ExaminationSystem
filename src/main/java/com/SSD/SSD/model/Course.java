@@ -1,6 +1,9 @@
 package com.SSD.SSD.model;
 
+import org.apache.tomcat.jni.Local;
+
 import javax.persistence.*;
+import java.time.LocalTime;
 import java.util.Collection;
 
 @Entity
@@ -8,6 +11,7 @@ public class Course {
     private Integer courseId;
     private String name;
     private String description;
+    private String code;
 //    private Integer professorId;
     private Professor professorByProfessorId;
     private Collection<StudentCourse> studentCoursesByCourseId;
@@ -32,6 +36,16 @@ public class Course {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Basic
+    @Column(name = "CODE")
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     @Basic
@@ -88,7 +102,7 @@ public class Course {
         this.professorByProfessorId = professorByProfessorId;
     }
 
-    @OneToMany(mappedBy = "courseByCourseId")
+    @OneToMany(mappedBy = "courseByCourseId", cascade = {CascadeType.REMOVE})
     public Collection<StudentCourse> getStudentCoursesByCourseId() {
         return studentCoursesByCourseId;
     }
@@ -97,7 +111,7 @@ public class Course {
         this.studentCoursesByCourseId = studentCoursesByCourseId;
     }
 
-    @OneToMany(mappedBy = "courseByCourseId")
+    @OneToMany(mappedBy = "courseByCourseId", cascade = {CascadeType.REMOVE})
     public Collection<Tests> getTestsByCourseId() {
         return testsByCourseId;
     }

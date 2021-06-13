@@ -66,7 +66,7 @@ public class Question {
         return result;
     }
 
-    @OneToMany(mappedBy = "questionByQuestionId")
+    @OneToMany(mappedBy = "questionByQuestionId", cascade = {CascadeType.REMOVE})
     public Collection<Answer> getAnswersByQuestionId() {
         return answersByQuestionId;
     }

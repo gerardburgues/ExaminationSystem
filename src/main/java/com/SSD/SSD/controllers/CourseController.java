@@ -1,8 +1,6 @@
 package com.SSD.SSD.controllers;
 
-import com.SSD.SSD.model.Course;
-import com.SSD.SSD.model.Student;
-import com.SSD.SSD.model.StudentCourse;
+import com.SSD.SSD.model.*;
 import com.SSD.SSD.services.CourseService;
 import com.SSD.SSD.services.StudentCourseService;
 import com.SSD.SSD.services.StudentService;
@@ -32,7 +30,7 @@ public class CourseController {
         this.studentCourseService = studentCourseService;
     }
 
-    @PostMapping(path = "/{id}")
+    @GetMapping(path = "/{id}")
     public ModelAndView displayCourse(@PathVariable Integer id){
 
         ModelAndView mav = new ModelAndView("course");
@@ -47,6 +45,7 @@ public class CourseController {
         }
 
         mav.addObject("course", course);
+        mav.addObject("allStudents", studentService.findAllStudents());
         mav.addObject("studentsEnrolled", studentsEnrolled);
 
         return mav;
@@ -77,5 +76,24 @@ public class CourseController {
         studentCourseService.deleteStudentCourse(studentCourse);
 
         return mav;
+    }
+
+    @GetMapping(path = "/{courseId}/deleteTest/{testId}")
+    public ModelAndView deleteTestFromCourse(@PathVariable Integer courseId, @PathVariable Integer testId){
+
+        ModelAndView mav = new ModelAndView("redirect:/course/"+courseId);
+
+        testsService.deleteTest(testsService.findTestById(testId).get());
+
+        return mav;
+    }
+
+    @GetMapping(path = "/{courseId}/takeTest/{testId}")
+    public ModelAndView displayTest(@PathVariable Integer courseId, @PathVariable Integer testId){
+
+        ModelAndView mav = new ModelAndView("test");
+
+        mav.addObject("course", courseService.findCourseById(courseId).get());
+        mav.addObject("studentsEnrolled", testsService.findTestById(testId).get());
     }
 }

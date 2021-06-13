@@ -32,4 +32,9 @@ public class TestsService {
 
         return testsRepository.findAll();
     }
+
+    public void deleteTest(Tests test){
+
+        testsRepository.delete(test);
+    }
 }

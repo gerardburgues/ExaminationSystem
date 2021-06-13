@@ -107,7 +107,7 @@ public class Tests {
         return result;
     }
 
-    @OneToMany(mappedBy = "testByTestId")
+    @OneToMany(mappedBy = "testByTestId", cascade = {CascadeType.REMOVE})
     public Collection<Question> getQuestionsByTestId() {
         return questionsByTestId;
     }
@@ -116,7 +116,7 @@ public class Tests {
         this.questionsByTestId = questionsByTestId;
     }
 
-    @OneToMany(mappedBy = "testByTestId")
+    @OneToMany(mappedBy = "testByTestId", cascade = {CascadeType.REMOVE})
     public Collection<StudentTest> getStudentTestsByTestId() {
         return studentTestsByTestId;
     }
