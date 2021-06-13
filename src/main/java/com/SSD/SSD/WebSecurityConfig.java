@@ -33,6 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                //this works
                 .authorizeRequests()
                 .antMatchers("/homeScreen", "/homeScreen").permitAll()
                 .anyRequest().authenticated()
