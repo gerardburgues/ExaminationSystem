@@ -39,9 +39,9 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="jumbotron">
-						<!--<h2 th:text="${course}"/>
+						<h2 th:text="${currentcourse}"/>
 						<br>
-						<h5 th:text="${course.getDescription()}"/>-->
+						<h5 th:text="${currentcourse.getDescription()}"/>
 					</div>
 				</div>
 			</div>
@@ -54,10 +54,10 @@
 					<hr>
 					<ul>
 						<li class="list-item">
-							<!--<h6 th:text="${'Professor: ' + course.getProfessorByProfessorId().getUserByUserId().getName() + ' ' + course.getProfessorByProfessorId().getUserByUserId().getSurname()}"/>-->
+							<h6 th:text="${'Professor: ' + currentcourse.getProfessorByProfessorId().getUserByUserId().getName() + ' ' + currentcourse.getProfessorByProfessorId().getUserByUserId().getSurname()}"/>-->
 						</li>
 						<li class="list-item">
-							<!--<h6 th:text="${'Contact: ' + course.getProfessorByProfessorId().getUserByUserId().getEmail()}"/>-->
+							<h6 th:text="${'Contact: ' + currentcourse.getProfessorByProfessorId().getUserByUserId().getEmail()}"/>-->
 						</li>
 					</ul>
 				</div>
@@ -67,7 +67,21 @@
 					<h3>
 						Students enrolled
 					</h3>
+
+					<form th:action="@{{id}/addStudent(id=${currentcourse.getCourseId()})}"   method="POST">
+						<div><label> User Id : <input type="text" th:name="indexNo"/> </label></div>
+
+						<div><input type="submit" value="Add Student"/></div>
+					</form>
+					<!--<form th:action="@{/addStudent/}"  th:object="${ss}" method="POST">
+						<div><label> User Id : <input type="text" th:field="*{indexNo}"/> </label></div>
+						<div><input type="submit" value="Add Student"/></div>
+					</form>-->
+
+
+
 					<hr>
+
 					<ul th:each="student :${studentsEnrolled}">
 						<li class="list-item">
 							<h6 th:text="${student.getUserByUserId().getName() + ' ' + student.getUserByUserId().getSurname()}"/>
@@ -81,7 +95,7 @@
 						Tests
 					</h3>
 					<hr>
-					<ul th:each="test :${course.getTestsByCourseId()}">
+					<ul th:each="test :${currentcourse.getTestsByCourseId()}">
 						<li class="list-item">
 							<a th:href="@{/index}" th:text="${test.getTestName()}">Login</a>
 						</li>

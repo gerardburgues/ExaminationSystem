@@ -32,8 +32,8 @@ public class CourseController {
         this.studentCourseService = studentCourseService;
     }
 
-    @PostMapping(path = "/{id}")
-    public ModelAndView displayCourse(@PathVariable Integer id){
+    @GetMapping(path = "/{id}")
+    public ModelAndView displayCourse(@PathVariable Integer id,@ModelAttribute("ss") Student student){
 
         ModelAndView mav = new ModelAndView("course");
         Course course = courseService.findCourseById(id).get();
@@ -46,21 +46,26 @@ public class CourseController {
             studentsEnrolled.add(studentCourse.getStudentByStudentId());
         }
 
-        mav.addObject("course", course);
+        mav.addObject("currentcourse", course);
+        mav.addObject("allStudents",studentService.findAllStudents());
         mav.addObject("studentsEnrolled", studentsEnrolled);
 
         return mav;
     }
 
-    @GetMapping(path = "/{courseId}/addStudent/{studentId}")
-    public ModelAndView addStudentToCourse(@PathVariable Integer courseId, @PathVariable Integer studentId){
 
-        ModelAndView mav = new ModelAndView("redirect:/course/"+courseId);
+    @PostMapping(path = "/addStudent")
+    public ModelAndView addStudentToCourse(@RequestParam(value="indexNo", required = true)String indexNo,
+                                           @RequestParam(value= "id", required = true) String id){
+
+        ModelAndView mav = new ModelAndView("redirect:/currentcourse/"+id);
         StudentCourse studentCourse = new StudentCourse();
+//SEARCH A REAL STUDENT BY ss
 
-        studentCourse.setCourseByCourseId(courseService.findCourseById(courseId).get());
-        studentCourse.setStudentByStudentId(studentService.findStudentById(studentId).get());
+        studentCourse.setCourseByCourseId(courseService.findCourseById(Integer.parseInt(id)).get());
+        studentCourse.setStudentByStudentId(studentService.findByIndexNo(Integer.parseInt(indexNo)));
 
+        System.out.println(studentService.findByIndexNo(Integer.parseInt(indexNo)));
         studentCourseService.saveStudentCourse(studentCourse);
 
         return mav;
@@ -69,7 +74,7 @@ public class CourseController {
     @GetMapping(path = "/{courseId}/deleteStudent/{studentId}")
     public ModelAndView deleteStudentFromCourse(@PathVariable Integer courseId, @PathVariable Integer studentId){
 
-        ModelAndView mav = new ModelAndView("redirect:/course/"+courseId);
+        ModelAndView mav = new ModelAndView("redirect:/currentcourse/"+courseId);
 
         StudentCourse studentCourse = studentCourseService.findStudentCourseByStudentAndCourse(
                 studentService.findStudentById(studentId).get(), courseService.findCourseById(courseId).get());
@@ -78,4 +83,7 @@ public class CourseController {
 
         return mav;
     }
+
+
+
 }
