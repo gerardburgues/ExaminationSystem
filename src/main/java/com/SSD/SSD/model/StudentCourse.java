@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class StudentCourse {
     private Integer studentCourseId;
     private Double finalGrade;
-//    private Integer courseId;
+    //    private Integer courseId;
 //    private Integer studentId;
     private Course courseByCourseId;
     private Student studentByStudentId;

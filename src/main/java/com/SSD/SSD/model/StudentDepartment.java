@@ -7,7 +7,7 @@ import javax.persistence.*;
 @UniqueConstraint(columnNames={"DEPARTMENT_ID", "STUDENT_ID"}))
 public class StudentDepartment {
     private Integer studentDepartmentId;
-//    private Integer departmentId;
+    //    private Integer departmentId;
 //    private Integer studentId;
     private Department departmentByDepartmentId;
     private Student studentByStudentId;

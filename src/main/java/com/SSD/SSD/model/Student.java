@@ -102,4 +102,6 @@ public class Student {
     public void setStudentTestsByStudentId(Collection<StudentTest> studentTestsByStudentId) {
         this.studentTestsByStudentId = studentTestsByStudentId;
     }
+
+
 }

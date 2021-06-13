@@ -1,7 +1,6 @@
 package com.SSD.SSD;
 
 
-import com.SSD.SSD.services.MyUserDetailsServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -24,7 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     @Autowired
-    MyUserDetailsServices userDetailsService;
+    UserDetailsService userDetailsService;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
@@ -34,13 +33,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                //this works
                 .authorizeRequests()
-                .antMatchers("/", "/homeScreen").permitAll()
+                .antMatchers("/homeScreen", "/homeScreen").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/loginoficial")
+
                 .permitAll()
+
                 .and()
                 .logout()
                 .permitAll();

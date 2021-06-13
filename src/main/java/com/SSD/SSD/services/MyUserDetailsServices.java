@@ -1,8 +1,9 @@
 package com.SSD.SSD.services;
 
 import com.SSD.SSD.model.MyUserDetails;
-import com.SSD.SSD.model.Student;
-import com.SSD.SSD.repos.StudentRepository;
+
+import com.SSD.SSD.model.Users;
+import com.SSD.SSD.repos.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,15 +16,18 @@ import java.util.Optional;
 public class MyUserDetailsServices implements UserDetailsService {
 
     @Autowired
-    StudentRepository studentRepository;
+    UsersRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        Optional<Student> student  = studentRepository.findStudentsByUserByUserId_Email(s);
-        student.orElseThrow(() -> new UsernameNotFoundException("Not Found" + s));
-        return student.map(MyUserDetails::new).get();
+        Optional<Users> user  = userRepository.findUsersByEmail(s);
+        user.orElseThrow(() -> new UsernameNotFoundException("Not FOund" + s));
+        System.out.println(s);
+        return user.map(MyUserDetails::new).get();
 
     }
+
+
 
 
 
