@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
-	  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
 
 	<title>E-Portal</title>
@@ -20,8 +19,7 @@
 
 </head>
 <body>
-
-	<div class="container" style="margin-top: 2%;" sec:authorize="hasAnyAuthority('PROFESSOR')">
+	<div class="container" style="margin-top: 2%;">
 		<div class="header clearfix">
 			<nav>
 				<ul class="nav nav-pills float-right">
@@ -41,28 +39,13 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="jumbotron">
-						<h2>
-							Advanced Web Technologies INZ004436
-						</h2>
-						<p>
-							Monday, 15:15 - 16:45 / Thursday, 11:15 - 12:45
-						</p>
+						<h2 th:text="${course.getName()}"/>
+						<br>
+						<h5 th:text="${course.getDescription()}"/>
 					</div>
 				</div>
 			</div>
-
-			<div class="alert alert-success alert-dismissable">
-				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-					×
-				</button>
-				<h4>
-					Exam!
-				</h4> <strong>Warning!</strong> All the assignments should be submitted before the date of the exam.  <a href="#" class="alert-link">Submit</a>
-			</div>
-			<br>
-
 			<div class="total">
-
 			<div class="row-content">
 				<div class="col-md-12">
 					<h3>
@@ -71,13 +54,10 @@
 					<hr>
 					<ul>
 						<li class="list-item">
-							Professor: Example Professor (MSc)
+							<h6 th:text="${'Professor: ' + course.getProfessorByProfessorId().getUserByUserId().getName() + ' ' + course.getProfessorByProfessorId().getUserByUserId().getSurname()}"/>
 						</li>
 						<li class="list-item">
-							Contact: example.professor@pwr.edu.pl, MS Teams
-						</li>
-						<li class="list-item">
-							Office hours: Wednesday 10:00am-12:00pm (alternatively Monday 12:00pm-2:00pm)
+							<h6 th:text="${'Contact: ' + course.getProfessorByProfessorId().getUserByUserId().getEmail()}"/>
 						</li>
 					</ul>
 				</div>
@@ -85,67 +65,34 @@
 			<div class="row-content">
 				<div class="col-md-12">
 					<h3>
-						Lectures
+						Students enrolled
 					</h3>
 					<hr>
-					<ol>
+					<ul th:each="student :${studentsEnrolled}">
 						<li class="list-item">
-							<a href="#">Introduction</a>
+							<h6 th:text="${student.getUserByUserId().getName() + ' ' + student.getUserByUserId().getSurname()}"/>
 						</li>
+					</ul>
+				</div>
+			</div>
+						<div class="row-content">
+				<div class="col-md-12">
+					<h3>
+						Tests
+					</h3>
+					<hr>
+					<ul th:each="test :${course.getTestsByCourseId()}">
 						<li class="list-item">
-							<a href="#">Single-Page Application Principles</a>
+							<a th:href="@{/index}" th:text="${test.getTestName()}">Login</a>
 						</li>
-						<li class="list-item">
-							<a href="#">Architectural Design Patterns</a>
-						</li>
-						<li class="list-item">
-							<a href="#">Programming Languages</a>
-						</li>
-
-					</ol>
+					</ul>
 				</div>
 			</div>
 		</div>
-
-		<br>
-		<br>
-			<div class="row">
-				<div class="col-md-4">
-					<h2>
-						Assignment 1
-					</h2>
-					<p>
-						Laboratory Report containing few pages about design (Requirements, UC diagram, UC description, DB Schema, nice to have are prototypes of interfaces and charts).
-
- 	
-					</p>
-					<p>
-						<a class="btn" href="#">View details »</a>
-					</p>
-				</div>
-				<div class="col-md-4">
-					<h2>
-						Assignment 2
-					</h2>
-					<p>
-						Design and implementation of the backend of the web application, as well as other needed components such as database and prototypes for the frontend.
-					</p>
-					<p>
-						<a class="btn" href="#">View details »</a>
-					</p>
-				</div>
-				<div class="col-md-4">
-					<h2>
-						Assignment 3
-					</h2>
-					<p>
-						Design and implementation of the frontend page taking into account the descriptions made in Assignment 1 and Assignment 2.
-					</p>
-					<p>
-						<a class="btn" href="#">View details »</a>
-					</p>
-				</div>
-			</div>
 		</div>
+	</div>
+	<br>
+	<br>
 	</body>
 	</html>
+
