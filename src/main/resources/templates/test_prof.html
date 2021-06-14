@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+	<html lang="en" xmlns:th="https://thymeleaf.org">
+	<head>
+
+		<title>E-Portal</title>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+		<!-- Popper JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+		<link href="../../../../frontend/css/style.css" rel="stylesheet">
+	</head>
+	<body>
+	<div class="container" style="margin-top: 2%;">
+		<div class="header clearfix">
+								<nav>
+        		<ul class="nav nav-pills float-right">
+          			<li class="nav-item">
+            				<form  th:action="index.html" method="get">
+              					<input class="btn btn-primary" style="margin:1px;" type="submit" value="Home"/>
+            				</form>
+          			</li>
+          			<li class="nav-item">
+            				<form th:action="@{/profile}" method="get">
+              					<input class="btn btn-primary" style="margin:1px;" type="submit" value="Profile"/>
+            				</form>
+          			</li>
+          			<li class="nav-item">
+            				<form th:action="@{/course}" method="get">
+              					<input class="btn btn-primary" style="margin:1px;" type="submit" value="Course"/>
+            				</form>
+            				<!--<form th:action="@{/profile/}" method="get">
+              					<input type="submit" value="Profile"/>
+            				</form>-->
+            				<!-- <a th:href="@{/profile/1}"> Profile</a> -->
+          			</li>
+          			<li class="nav-item">
+            				<form th:action="@{/logout}" method="post">
+              					<input class="btn btn-danger" style="margin:1px;" type="submit" value="Sign Out"/>
+            				</form>
+          			</li>
+        		</ul>
+      			</nav>
+			<h3 class="text-muted">E-Portal</h3>
+			<hr>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="jumbotron">
+						<h2 th:text="${currentTest.getTestName()}"/>
+						<br>
+						<input type="text" style="width: 600px;" style="font-size: 1.3rem;" id="login" class="fadeIn second" name="Question" placeholder="Question">
+<!--						<h5 th:text="${currentCourse.getName()) + ' ' + currentCourse.getCode() + ' ' + currentTest.getDurationMinutes() + ' min'}"/>-->
+					</div>
+				</div>
+			</div>
+			<div class="total">
+				<div class="row-content" >
+					<div class="col-md-12">
+						<h4 th:text="${currentTest.getTestName()}"></h4>
+						<hr>
+						<div id='block-11' style='padding: 10px;'>
+							<label for='option-11' style=' margin-left: 2%; padding: 5px; font-size: 1.2rem;'>• Answer 1: </label>
+								<input type="text" style="width: 400px;" id="login" class="fadeIn second" name="Answer1" placeholder="Answer 1">
+							<span id='result-11'></span>
+						</div>
+						<hr />
+
+						<div id='block-12' style='padding: 10px;'>
+							<label for='option-12' style=' margin-left: 2%; padding: 5px; font-size: 1.2rem;'>• Answer 2: </label>
+								<input type="text" style="width: 400px;" id="login" class="fadeIn second" name="Answer2" placeholder="Answer 2">
+							<span id='result-12'></span>
+						</div>
+						<hr />
+
+						<div id='block-13' style='padding: 10px;'>
+							<label for='option-13' style=' margin-left: 2%; padding: 5px; font-size: 1.2rem;'>• Answer 3: </label>
+								<input type="text" style="width: 400px;" id="login" class="fadeIn second" name="Answer3" placeholder="Answer 3">
+							<span id='result-13'></span>
+						</div>
+						<hr />
+
+						<div id='block-14' style='padding: 10px;'>
+							<label for='option-11' style=' margin-left: 2%; padding: 5px; font-size: 1.2rem;'>• Answer 4: </label>
+								<input type="text" style="width: 400px;" id="login" class="fadeIn second" name="Answer4" placeholder="Answer 4">
+							<span id='result-14'></span>
+						</div>
+						<hr/>
+						<div class="col-md-4" style="margin: 0 auto;">
+							<button type="Next question" class="btn btn-primary btn-lg btn-block"> Next question  </button>
+						</div>
+					</div>
+
+				</div>
+				<div class="row-content">
+					<div class="col-md-12">
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	</body>
+	</html>
+
+				<!--					<a id='showanswer1'></a>-->
+				<!--					<script>-->
+				<!--						//    The function evaluates the answer and displays result-->
+				<!--						function displayAnswer1() {-->
+				<!--							if (document.getElementById('option-11').checked) {-->
+				<!--								document.getElementById('block-11').style.border = '3px solid limegreen'-->
+				<!--								document.getElementById('result-11').style.color = 'limegreen'-->
+				<!--								document.getElementById('result-11').innerHTML = 'Correct!'-->
+				<!--							}-->
+				<!--							if (document.getElementById('option-12').checked) {-->
+				<!--								document.getElementById('block-12').style.border = '3px solid red'-->
+				<!--								document.getElementById('result-12').style.color = 'red'-->
+				<!--								document.getElementById('result-12').innerHTML = 'Incorrect!'-->
+				<!--								showCorrectAnswer1()-->
+				<!--							}-->
+				<!--							if (document.getElementById('option-13').checked) {-->
+				<!--								document.getElementById('block-13').style.border = '3px solid red'-->
+				<!--								document.getElementById('result-13').style.color = 'red'-->
+				<!--								document.getElementById('result-13').innerHTML = 'Incorrect!'-->
+				<!--								showCorrectAnswer1()-->
+				<!--							}-->
+				<!--							if (document.getElementById('option-14').checked) {-->
+				<!--								document.getElementById('block-14').style.border = '3px solid red'-->
+				<!--								document.getElementById('result-14').style.color = 'red'-->
+				<!--								document.getElementById('result-14').innerHTML = 'Incorrect!'-->
+				<!--								showCorrectAnswer1()-->
+				<!--							}-->
+				<!--						}-->
+				<!--						// the functon displays the link to the correct answer-->
+				<!--						function showCorrectAnswer1() {-->
+				<!--							let showAnswer1 = document.createElement('p')-->
+				<!--							showAnswer1.innerHTML = 'Show Corrent Answer'-->
+				<!--							showAnswer1.style.position = 'relative'-->
+				<!--							showAnswer1.style.top = '-180px'-->
+				<!--							showAnswer1.style.fontSize = '1.75rem'-->
+				<!--							document.getElementById('showanswer1').appendChild(showAnswer1)-->
+				<!--							showAnswer1.addEventListener('click', () => {-->
+				<!--								document.getElementById('block-11').style.border = '3px solid limegreen'-->
+				<!--								document.getElementById('result-11').style.color = 'limegreen'-->
+				<!--								document.getElementById('result-11').innerHTML = 'Correct!'-->
+				<!--								document.getElementById('showanswer1').removeChild(showAnswer1)-->
+				<!--							})-->
+				<!--						}-->
+				<!--					</script>-->

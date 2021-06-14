@@ -1,0 +1,21 @@
+body{
+    background: aliceblue;
+    text-align: center;
+}
+h1{
+
+    font-family: inherit;
+    font-size: xxx-large;
+}
+
+a{
+    font-size: x-large;
+    text-decoration: none;
+
+
+}
+a:hover{
+
+    font-size: xx-large;
+    text-decoration: #5e8396;
+}
