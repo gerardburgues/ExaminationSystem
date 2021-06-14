@@ -136,6 +136,7 @@ input[type=text] {
   border-radius: 5px 5px 5px 5px;
 }
 
+<<<<<<< HEAD
 input[type=password] {
   background-color: #f6f6f6;
   border: none;
@@ -167,6 +168,8 @@ input[type=password]:placeholder {
 }
 
 
+=======
+>>>>>>> a6e2097f0ee28ee8db88c5347b1cc4ff22deeb82
 input[type=text]:focus {
   background-color: #fff;
   border-bottom: 2px solid #5fbae9;
