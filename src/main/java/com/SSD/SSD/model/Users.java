@@ -104,7 +104,7 @@ public class Users {
         return result;
     }
 
-    @OneToOne(mappedBy = "userByUserId")
+    @OneToOne(mappedBy = "userByUserId", cascade = {CascadeType.REMOVE})
     public Professor getProfessorsByUserId() {
         return professorsByUserId;
     }
@@ -113,7 +113,7 @@ public class Users {
         this.professorsByUserId = professorsByUserId;
     }
 
-    @OneToOne(mappedBy = "userByUserId")
+    @OneToOne(mappedBy = "userByUserId", cascade = {CascadeType.REMOVE})
     public Student getStudentsByUserId() {
         return studentsByUserId;
     }

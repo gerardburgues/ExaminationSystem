@@ -14,16 +14,10 @@ import java.util.List;
 public class StudentCourseService {
 
     private final StudentCourseRepository studentCourseRepository;
-    private final StudentRepository studentRepository;
 
     @Autowired
-    public StudentCourseService(StudentCourseRepository studentCourseRepository, StudentRepository studentRepository) {
+    public StudentCourseService(StudentCourseRepository studentCourseRepository) {
         this.studentCourseRepository = studentCourseRepository;
-        this.studentRepository = studentRepository;
-    }
-
-    public List<Student> getAllStudents(){
-        return studentRepository.findAll();
     }
 
     public void saveStudentCourse(StudentCourse studentCourse){

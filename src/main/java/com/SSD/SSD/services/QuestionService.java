@@ -5,6 +5,8 @@ import com.SSD.SSD.repos.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class QuestionService {
 
@@ -18,5 +20,10 @@ public class QuestionService {
     public void saveQuestion(Question question){
 
         questionRepository.save(question);
+    }
+
+    public Question findQuestionById(Integer id){
+
+        return questionRepository.findById(id).get();
     }
 }

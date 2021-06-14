@@ -14,6 +14,7 @@ public class MyUserDetails implements UserDetails {
     private String password;
     private Long pesel;
     private String surname;
+    private Integer userId;
 
     public MyUserDetails(Users user){
 
@@ -22,13 +23,54 @@ public class MyUserDetails implements UserDetails {
         this.password=user.getPassword();
         this.pesel= user.getPesel();
         this.surname=user.getSurname();
-
+        this.userId=user.getUserId();
     }
     public MyUserDetails(){
-
-
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Long getPesel() {
+        return pesel;
+    }
+
+    public void setPesel(Long pesel) {
+        this.pesel = pesel;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

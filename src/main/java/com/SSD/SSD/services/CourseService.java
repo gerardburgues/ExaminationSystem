@@ -17,8 +17,8 @@ public class CourseService {
         this.courseRepository = courseRepository;
     }
 
-    public Optional<Course> findCourseById(Integer id){
+    public Course findCourseById(Integer id){
 
-        return courseRepository.findById(id);
+        return courseRepository.findById(id).get();
     }
 }

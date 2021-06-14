@@ -3,7 +3,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
+<<<<<<< HEAD
+  <title>E-Portal</title>
+=======
     <title>E-Portal</title>
+>>>>>>> origin/master
 </head>
 
 <!-- Latest compiled and minified CSS -->
@@ -20,6 +24,24 @@
 </head>
 
 <body>
+<<<<<<< HEAD
+
+<!--
+<form action="#" th:action="@{/profile}" th:object="${studentprofile}" method="post"></form>
+<tr>
+    <td> Name</td>
+    <input type="text" th:field="*{studentprofile.studentId}">
+
+</tr>
+-->
+<form action="#" th:action="@{/saveProfile}"  th:object="${student}" method="POST">
+    <input type="text" th:field="*{}">
+    <input type="text" th:field="*{userByUserId.name}">
+</form>
+
+</body>
+</html>
+=======
 <div class="container" style="margin-top: 2%;">
     <div class="header clearfix">
         <nav>
@@ -111,3 +133,4 @@
 </body>
 </html>
 
+>>>>>>> origin/master

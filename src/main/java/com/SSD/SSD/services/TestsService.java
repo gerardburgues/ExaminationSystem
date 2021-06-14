@@ -23,13 +23,18 @@ public class TestsService {
        testsRepository.save(test);
     }
 
-    public Optional<Tests> findTestById (Integer id){
+    public Tests findTestById (Integer id){
 
-        return testsRepository.findById(id);
+        return testsRepository.findById(id).get();
     }
 
     public Collection<Tests> findAllTests(){
 
         return testsRepository.findAll();
+    }
+
+    public void deleteTest(Tests test){
+
+        testsRepository.delete(test);
     }
 }
