@@ -17,8 +17,8 @@ public class QuestionTypeService {
         this.questionTypeRepository = questionTypeRepository;
     }
 
-    public Optional<QuestionType> findQuestionTypeById(Integer id){
+    public QuestionType findQuestionTypeById(Integer id){
 
-        return questionTypeRepository.findById(id);
+        return questionTypeRepository.findById(id).get();
     }
 }

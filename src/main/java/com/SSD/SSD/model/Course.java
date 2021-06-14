@@ -78,7 +78,7 @@ public class Course {
         if (courseId != null ? !courseId.equals(course.courseId) : course.courseId != null) return false;
         if (name != null ? !name.equals(course.name) : course.name != null) return false;
         if (description != null ? !description.equals(course.description) : course.description != null) return false;
-//        if (professorId != null ? !professorId.equals(course.professorId) : course.professorId != null) return false;
+//        if (professorId != null ? !professorId.equals(currentCourse.professorId) : currentCourse.professorId != null) return false;
 
         return true;
     }

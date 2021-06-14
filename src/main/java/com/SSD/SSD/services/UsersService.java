@@ -15,12 +15,16 @@ public class UsersService {
         this.usersRepository = usersRepository;
     }
 
-    public Optional<Users> findUserById(Integer id){
+    public Users findUserById(Integer id){
 
-        return usersRepository.findById(id);
+        return usersRepository.findById(id).get();
     }
-    public Optional<Users> findUserByEmail(String email){
+    public Users findUserByEmail(String email){
 
-        return usersRepository.findUsersByEmail(email);
+        return usersRepository.findUsersByEmail(email).get();
+    }
+
+    public void saveUser(Users user){
+        this.usersRepository.save(user);
     }
 }

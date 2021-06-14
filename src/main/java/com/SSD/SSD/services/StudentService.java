@@ -23,8 +23,13 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public Optional<Student> findStudentById(Integer id){
+    public Student findStudentById(Integer id){
 
-        return studentRepository.findById(id);
+        return studentRepository.findById(id).get();
+    }
+
+    public Student findByIndexNo(Integer indexNo) {
+
+        return studentRepository.findByIndexNo(indexNo);
     }
 }

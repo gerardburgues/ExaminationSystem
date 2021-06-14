@@ -6,6 +6,7 @@ import java.util.Collection;
 @Entity
 public class Question {
     private Integer questionId;
+    private String questionText;
 //    private Integer questionTypeId;
 //    private Integer testId;
     private Collection<Answer> answersByQuestionId;
@@ -21,6 +22,16 @@ public class Question {
 
     public void setQuestionId(Integer questionId) {
         this.questionId = questionId;
+    }
+
+    @Basic
+    @Column(name = "QUESTION_TEXT")
+    public String getQuestionText() {
+        return questionText;
+    }
+
+    public void setQuestionText(String questionText) {
+        this.questionText = questionText;
     }
 
 //    @Basic

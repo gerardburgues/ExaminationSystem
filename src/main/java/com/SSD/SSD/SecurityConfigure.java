@@ -13,6 +13,6 @@ public class SecurityConfigure implements WebMvcConfigurer {
         registry.addViewController("/loginoficial").setViewName("loginoficial");
         registry.addViewController("/index").setViewName("index");
         registry.addViewController("/profile/{}").setViewName("profile");
-        registry.addViewController("/course").setViewName("course");
+        registry.addViewController("/currentCourse").setViewName("course");
     }
 }
