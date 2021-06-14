@@ -68,8 +68,8 @@
 						Students enrolled
 					</h3>
 
-					<form th:action="@{{id}/addStudent(id=${currentcourse.getCourseId()})}"   method="POST">
-						<div><label> User Id : <input type="text" th:name="indexNo"/> </label></div>
+					<form th:action="@{{id}/addStudent/(id=${currentcourse.getCourseId()})}" method="POST">
+						<div><label> User Id : <input type="text" th:name="indexNo" /> </label></div>
 
 						<div><input type="submit" value="Add Student"/></div>
 					</form>

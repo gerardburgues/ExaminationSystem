@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,7 +19,7 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public Collection<Student> findAllStudents(){
+    public List<Student> findAllStudents(){
 
         return studentRepository.findAll();
     }
@@ -27,4 +28,11 @@ public class StudentService {
 
         return studentRepository.findById(id);
     }
+
+    public Student findByIndexNo(Integer indexNo){
+        return  studentRepository.findByIndexNo(indexNo);
+    }
+    //findStudentByIndexNo
+
+
 }

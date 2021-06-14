@@ -54,18 +54,17 @@ public class CourseController {
     }
 
 
-    @PostMapping(path = "/addStudent")
+    @PostMapping(path = "{courseId}/addStudent")
     public ModelAndView addStudentToCourse(@RequestParam(value="indexNo", required = true)String indexNo,
-                                           @RequestParam(value= "id", required = true) String id){
+                                           @PathVariable Integer courseId){
 
-        ModelAndView mav = new ModelAndView("redirect:/currentcourse/"+id);
+        ModelAndView mav = new ModelAndView("redirect:/course/"+courseId);
         StudentCourse studentCourse = new StudentCourse();
 //SEARCH A REAL STUDENT BY ss
 
-        studentCourse.setCourseByCourseId(courseService.findCourseById(Integer.parseInt(id)).get());
+        studentCourse.setCourseByCourseId(courseService.findCourseById(courseId).get());
         studentCourse.setStudentByStudentId(studentService.findByIndexNo(Integer.parseInt(indexNo)));
 
-        System.out.println(studentService.findByIndexNo(Integer.parseInt(indexNo)));
         studentCourseService.saveStudentCourse(studentCourse);
 
         return mav;

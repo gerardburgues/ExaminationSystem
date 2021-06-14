@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
+
 public class Student {
     private Integer studentId;
     private Integer indexNo;
