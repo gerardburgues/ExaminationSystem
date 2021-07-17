@@ -24,12 +24,12 @@
 			<nav>
 				<ul class="nav nav-pills float-right">
 					<li class="nav-item">
-						<form  th:action="@{/index/start}" method="get">
+						<form  th:action="@{/index/professor/start}" method="get">
 							<input class="btn btn-primary" style="margin:1px;" type="submit" value="Home"/>
 						</form>
 					</li>
 					<li class="nav-item">
-						<form th:action="@{/profile}" method="get">
+						<form th:action="@{/professor/profile}" method="get">
 							<input class="btn btn-primary" style="margin:1px;" type="submit" value="Profile"/>
 						</form>
 					</li>
@@ -60,9 +60,9 @@
 					</div>
 				</div>
 			</div>
-			<div th:text="${errorMessage}" th:if="${errorMessage}" style="background-color: #EA4335;
-			margin-bottom: 20px; padding: 5px; font-weight: bold; font-size: x-large" >
-			</div>
+<!--			<div th:text="${errorMessage}" th:if="${errorMessage}" style="background-color: #EA4335;-->
+<!--			margin-bottom: 20px; padding: 5px; font-weight: bold; font-size: x-large" >-->
+<!--			</div>-->
 			<div class="total">
 			<div class="row-content">
 				<div class="col-md-12">
@@ -89,18 +89,32 @@
 					<h3>
 						Students enrolled
 					</h3>
-<!--					<br>-->
-<!--					<h5>Add new student:</h5>-->
-<!--					<form th:action="@{{id}/addStudent (id=${currentCourse.getCourseId()})}" method="POST">-->
-<!--						<div><label> User Id : <input type="text" th:name="indexNo"/> </label></div>-->
-<!--						<div><input type="submit" value="Add Student"/></div>-->
-<!--					</form>-->
+					<div th:text="${errorMessage}" th:if="${errorMessage}" style="background-color: #EA4335;
+					margin-bottom: 20px; padding: 5px; font-weight: bold; font-size: x-large" >
+					</div>
+					<div class="total">
+					<br>
+					<h5>Add new student:</h5>
+					<form th:action="@{{id}/addStudent (id=${currentCourse.getCourseId()})}" method="POST">
+						<div><label> Student ID: <input type="text" th:name="indexNo"/> </label></div>
+						<div><input type="submit" value="Add Student" class="btn btn-primary btn-block" style="width: 209px; margin-left: 82px"/></div>
+					</form>
+
 					<hr>
 					<ul th:each="student :${studentsEnrolled}">
 						<li class="list-item">
 							<h6 th:text="${student.getUserByUserId().getName() + ' ' + student.getUserByUserId().getSurname()}"/>
 						</li>
+						<a th:href="@{/course/{id}/deleteStudent/{sId}(id=${currentCourse.getCourseId()},sId=${student.studentId})}"> DELETE</a>
+
 					</ul>
+
+
+<!--					<ul th:each="student :${studentsEnrolled}">-->
+<!--						<li class="list-item">-->
+<!--							<h6 th:text="${student.getUserByUserId().getName() + ' ' + student.getUserByUserId().getSurname()}"/>-->
+<!--						</li>-->
+<!--					</ul>-->
 				</div>
 			</div>
 				<hr>
@@ -112,17 +126,19 @@
 					<hr>
 					<ul th:each="test :${currentCourse.getTestsByCourseId()}">
 						<li class="list-item">
-							<a th:href="@{{courseId}/takeTest/{testId} (testId=${test.getTestId()}, courseId=${currentCourse.getCourseId()})}" th:text="${test.getTestName()}"></a>
-							<h7 th:text="${' | Start: ' + test.getStartDate() + ' ' + test.getStartTime() + ' | Score: ' + testScoresMap.get(test)}"></h7>
+<!--							<a th:href="@{{courseId}/takeTest/{testId} (testId=${test.getTestId()}, courseId=${currentCourse.getCourseId()})}" th:text="${test.getTestName()}"></a>-->
+<!--							<h7 th:text="${test.getStartDate() + ' ' + test.getStartTime() + ' | Score: ' + testScoresMap.get(test)}"></h7>-->
+							<h5 th:text="${test.getTestName()}"></h5>
+							<h7 th:text="${'Start: ' + test.getStartDate() + ' ' + test.getStartTime()}"></h7>
+							<hr>
 						</li>
-						<hr>
 					</ul>
 				</div>
+						</div>
 			</div>
-		</div>
 		</div>
 	</div>
 	<br>
 	<br>
-	</body>
-	</html>
+</body>
+</html>

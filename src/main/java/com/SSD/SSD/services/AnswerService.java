@@ -19,4 +19,9 @@ public class AnswerService {
 
         answerRepository.save(answer);
     }
+
+    public Answer findAnswerById(Integer id){
+
+        return answerRepository.findById(id).get();
+    }
 }

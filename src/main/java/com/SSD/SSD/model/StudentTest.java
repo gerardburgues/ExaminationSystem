@@ -3,6 +3,8 @@ package com.SSD.SSD.model;
 import javax.persistence.*;
 
 @Entity
+@Table(uniqueConstraints=
+@UniqueConstraint(columnNames={"TEST_ID", "STUDENT_ID"}))
 public class StudentTest {
     private Integer studentTestId;
     private Double mark;

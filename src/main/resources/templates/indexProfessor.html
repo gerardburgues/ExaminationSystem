@@ -37,12 +37,12 @@
         <nav>
             <ul class="nav nav-pills float-right">
                 <li class="nav-item">
-                    <form  th:action="@{/index/start}" method="get">
+                    <form  th:action="@{/index/professor/start}" method="get">
                         <input class="btn btn-primary" style="margin:1px;" type="submit" value="Home"/>
                     </form>
                 </li>
                 <li class="nav-item">
-                    <form th:action="@{/profile}" method="get">
+                    <form th:action="@{/professor/profile}" method="get">
                         <input class="btn btn-primary" style="margin:1px;" type="submit" value="Profile"/>
                     </form>
                 </li>
@@ -70,9 +70,9 @@
             <div class="col-lg-6">
                 <ul th:each="course :${coursesList}">
                     <li class="list-item">
-                        <a th:href="@{/course/{courseId} (courseId=${course.getCourseId()})}"  th:text="${course.getName() + ' ' + course.getCode()}" class="course-main"></a>
-                        <p th:text="${'Professor: ' + ' ' + course.getProfessorByProfessorId().getUserByUserId().getName()
-                        + ' ' + course.getProfessorByProfessorId().getUserByUserId().getSurname()}" class="info-main"></p>
+                        <a th:href="@{/course/professor/{courseId} (courseId=${course.getCourseId()})}"  th:text="${course.getName() + ' ' + course.getCode()}" class="course-main"></a>
+<!--                        <p th:text="${'Professor: ' + ' ' + course.getProfessorByProfessorId().getUserByUserId().getName()-->
+<!--                        + ' ' + course.getProfessorByProfessorId().getUserByUserId().getSurname()}" class="info-main"></p>-->
                     </li>
                     <hr>
                 </ul>

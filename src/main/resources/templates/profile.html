@@ -1,13 +1,9 @@
 
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 
 <head>
-<<<<<<< HEAD
-  <title>E-Portal</title>
-=======
     <title>E-Portal</title>
->>>>>>> origin/master
 </head>
 
 <!-- Latest compiled and minified CSS -->
@@ -21,39 +17,41 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="static/main.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="../../../../frontend/css/main.css">
 </head>
 
 <body>
-<<<<<<< HEAD
-
-<!--
-<form action="#" th:action="@{/profile}" th:object="${studentprofile}" method="post"></form>
-<tr>
-    <td> Name</td>
-    <input type="text" th:field="*{studentprofile.studentId}">
-
-</tr>
--->
-<form action="#" th:action="@{/saveProfile}"  th:object="${student}" method="POST">
-    <input type="text" th:field="*{}">
-    <input type="text" th:field="*{userByUserId.name}">
-</form>
-
-</body>
-</html>
-=======
 <div class="container" style="margin-top: 2%;">
     <div class="header clearfix">
         <nav>
             <ul class="nav nav-pills float-right">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+                    <form  th:action="@{/index/start}" method="get">
+                        <input class="btn btn-primary" style="margin:1px;" type="submit" value="Home"/>
+                    </form>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Profile</a>
+                    <form th:action="@{/profile}" method="get">
+                        <input class="btn btn-primary" style="margin:1px;" type="submit" value="Profile"/>
+                    </form>
                 </li>
+<!--                <li class="nav-item">-->
+<!--                    <form th:action="@{/course}" method="get">-->
+<!--                        <input class="btn btn-primary" style="margin:1px;" type="submit" value="Course"/>-->
+<!--                    </form>-->
+                    <!--<form th:action="@{/profile/}" method="get">
+                          <input type="submit" value="Profile"/>
+                    </form>-->
+                    <!-- <a th:href="@{/profile/1}"> Profile</a> -->
+<!--                </li>-->
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Logout</a>
+                    <form th:action="@{/logout}" method="post">
+                        <input class="btn btn-danger" style="margin:1px;" type="submit" value="Sign Out"/>
+                    </form>
                 </li>
             </ul>
         </nav>
@@ -61,18 +59,7 @@
         <hr>
 
         <div class="row">
-            <div class="col-md-3 ">
-                <div class="list-group ">
-                    <a href="#" class="list-group-item list-group-item-action active">Dashboard</a>
-                    <a href="#" class="list-group-item list-group-item-action">User Management</a>
-                    <a href="#" class="list-group-item list-group-item-action">Courses</a>
-                    <a href="#" class="list-group-item list-group-item-action">Grades</a>
-                    <a href="#" class="list-group-item list-group-item-action">Comments</a>
-                    <a href="#" class="list-group-item list-group-item-action">Settings</a>
 
-
-                </div>
-            </div>
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-body">
@@ -84,35 +71,35 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <form action="#" th:action="@{/saveProfile}"  th:object="${studentprofile}" method="POST">
+                                <form action="#" th:action="@{/saveProfile}"  method="POST">
                                     <div class="form-group row">
                                         <label  class="col-4 col-form-label">Student ID</label>
                                         <div class="col-8">
-                                            <!--  <span type="text" th:text="*{}"></span>-->
+                                            <span type="text" th:text="${studentprofile.getStudentsByUserId().getIndexNo()}"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-4 col-form-label">Name</label>
                                         <div class="col-8">
-                                            <span type="text" th:text="*{name}"></span>
+                                            <span type="text" th:text="${studentprofile.getName()}"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label  class="col-4 col-form-label">Surname</label>
                                         <div class="col-8">
-                                            <span type="text" th:text="*{surname}"></span>
+                                            <span type="text" th:text="${studentprofile.getSurname()}"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label  class="col-4 col-form-label">Email</label>
                                         <div class="col-8">
-                                            <span type="text" th:text="*{email}"></span>
+                                            <span type="text" th:text="${studentprofile.getEmail()}"></span>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label  class="col-4 col-form-label">Pesel</label>
+                                        <label  class="col-4 col-form-label">PESEL</label>
                                         <div class="col-8">
-                                            <span type="text" th:text="*{pesel}"></span>
+                                            <span type="text" th:text="${studentprofile.getPesel()}"></span>
                                         </div>
                                     </div>
 
@@ -133,4 +120,3 @@
 </body>
 </html>
 
->>>>>>> origin/master

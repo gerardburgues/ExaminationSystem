@@ -27,6 +27,7 @@
 					<div class="jumbotron">
 						<h2 th:text="${currentTest.getTestName()}"/>
 						<br>
+						<h5 th:text="${currentCourse.getCode() + ' ' + currentCourse.getName() + ' ' + currentTest.getDurationMinutes() + ' min'}"/>
 <!--						<h5 th:text="${currentCourse.getName()) + ' ' + currentCourse.getCode() + ' ' + currentTest.getDurationMinutes() + ' min'}"/>-->
 					</div>
 				</div>
@@ -34,42 +35,22 @@
 			<div class="total">
 				<div class="row-content">
 					<div class="col-md-12">
-						<h4 th:text="${currentTest.getTestName()}"></h4>
-						<hr>
-						<div id='block-11' style='padding: 10px;'>
-							<label for='option-11' style=' padding: 5px; font-size: 1.2rem;'>
-								<input type='radio' name='option' value='Marek Krotkiewicz' id='option-11' style='transform: scale(1.0); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
-								Marek Krotkiewicz</label>
-							<span id='result-11'></span>
-						</div>
-						<hr />
-
-						<div id='block-12' style='padding: 10px;'>
-							<label for='option-12' style=' padding: 5px; font-size: 1.2rem;'>
-								<input type='radio' name='option' value='Luis Pinilla' id='option-12' style='transform: scale(1.0); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
-								Luis Pinilla</label>
-							<span id='result-12'></span>
-						</div>
-						<hr />
-
-						<div id='block-13' style='padding: 10px;'>
-							<label for='option-13' style=' padding: 5px; font-size: 1.2rem;'>
-								<input type='radio' name='option' value='Paloma Cantero' id='option-13' style='transform: scale(1.0); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
-								Paloma Cantero</label>
-							<span id='result-13'></span>
-						</div>
-						<hr />
-
-						<div id='block-14' style='padding: 10px;'>
-							<label for='option-14' style=' padding: 5px; font-size: 1.2rem;'>
-								<input type='radio' name='option' value='Sergio Herrando' id='option-14' style='transform: scale(1.0); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
-								Sergio Herrando</label>
-							<span id='result-14'></span>
-						</div>
-						<hr />
-						<div class="col-md-4">
-							<button type="Next question" class="btn btn-primary btn-block"> Next question  </button>
-						</div>
+						<h4 th:text="${currentQuestion.getQuestionText()}"></h4>
+						<br>
+						<form th:action="@{/{url} (url=${currentUrl})}" method="GET">
+						<ol>
+							<li th:each="answer :${currentAnswers}" class="list-item">
+									<label for='option-11' style=' padding: 2px; font-size: 1.2rem;'>
+										<input type='radio' th:name="answer" th:text="${answer.getValue()}" th:value="${answer.getAnswerId()}" id='option-11' style='transform: scale(1.0); margin-right: 10px; vertical-align: middle; margin-top: -2px;' />
+									</label>
+								<hr/>
+							</li>
+						</ol>
+							<div class="col-md-4"><input type="submit" th:value="${buttonLabel}" class="btn btn-primary btn-block"/></div>
+						</form>
+<!--						<div class="col-md-4">-->
+<!--							<button type="Next question" class="btn btn-primary btn-block"> Next question  </button>-->
+<!--						</div>-->
 					</div>
 
 				</div>

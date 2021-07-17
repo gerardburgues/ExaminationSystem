@@ -3,6 +3,8 @@ package com.SSD.SSD.model;
 import javax.persistence.*;
 
 @Entity
+@Table(uniqueConstraints=
+@UniqueConstraint(columnNames={"COURSE_ID", "STUDENT_ID"}))
 public class StudentCourse {
     private Integer studentCourseId;
     private Double finalGrade;

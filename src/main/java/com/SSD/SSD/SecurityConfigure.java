@@ -8,11 +8,14 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class SecurityConfigure implements WebMvcConfigurer {
 
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("index");
+        registry.addViewController("/").setViewName("redirect:/index/role");
         registry.addViewController("/home").setViewName("homeScreen");
         registry.addViewController("/loginoficial").setViewName("loginoficial");
         registry.addViewController("/index").setViewName("index");
-        registry.addViewController("/profile/{}").setViewName("profile");
-        registry.addViewController("/currentCourse").setViewName("course");
+        registry.addViewController("/index/professor").setViewName("indexProfessor");
+        registry.addViewController("/profile").setViewName("professorProfile");
+        registry.addViewController("/course").setViewName("course");
+        registry.addViewController("/showTestForm").setViewName("showTestForm");
+        registry.addViewController("/AddQuestionForm").setViewName("AddQuestionForm");
     }
 }

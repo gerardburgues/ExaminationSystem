@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student - Professor</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link href="../../../../frontend/css/style.css" rel="stylesheet">
+</head>
+<style>
+
+    h1{
+        text-align: center;
+        font-family: ui-monospace;
+        margin-top:200px;
+
+    }
+    #submit1 {
+        background-color: #ccc;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius:6px;
+        color: #fff;
+        font-family: 'Oswald';
+        font-size: 20px;
+        text-decoration: none;
+        cursor: pointer;
+        border:none;
+        width: 200px;
+        height: 100px;
+
+
+        margin-top:30px
+    }
+
+
+
+    #submit1:hover {
+        border: none;
+        background:#007bff;
+        box-shadow: 0px 0px 1px #777;
+    }
+
+    #submit {
+        background-color: #ccc;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius:6px;
+        color: #fff;
+        font-family: 'Oswald';
+        font-size: 20px;
+        text-decoration: none;
+        cursor: pointer;
+        border:none;
+        width: 200px;
+        height: 100px;
+
+
+        margin-top:30px;
+    }
+
+    #submit:hover {
+        border: none;
+        background:#007bff;
+        box-shadow: 0px 0px 1px #777;
+    }
+
+    div{
+        display: inline-block;
+    }
+    div label{
+        display: block;
+    }
+    #big{
+        margin-left: 39%;
+    }
+</style>
+<body>
+<form th:action="@{/logout}" method="post">
+    <input class="btn btn-danger" style="margin-left: 1266px; margin-top: 33px" type="submit" value="Sign Out"/>
+</form>
+<h1 style="margin-left: 45px">Choose account type</h1>
+
+<!--
+<a th:href="@{'/index/'}">Click student</a>
+<a>Click professor</a>
+-->
+<div id="big">
+    <div>
+        <form th:action="@{/index/start}" method="GET">
+            <div><label><input type="hidden"/> </label></div>
+            <div><input id="submit1" type="submit" value="Student"/></div>
+        </form>
+    </div>
+    <div>
+        </form><form th:action="@{/index/professor/start}" method="GET">
+        <div><label><input type="hidden"/> </label></div>
+        <div><input type="submit" value="Professor"  id="submit"/></div>
+    </form>
+    </div>
+</div>
+<div  th:if="${errorMessage}" style="font-weight: bold; font-size: x-large; margin-top:30px;">
+    <br>
+    <h3 th:text="${errorMessage}" style="text-align: center;  background-color: #EA4335;
+                                    padding-top: 5px; padding-bottom: 5px; width: 1700px;"></h3>
+</div>
+</body>
+</html>
